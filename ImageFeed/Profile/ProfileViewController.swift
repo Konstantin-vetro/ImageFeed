@@ -29,10 +29,13 @@ extension ProfileViewController {
             avatar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             name.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 8),
             name.leadingAnchor.constraint(equalTo: avatar.leadingAnchor),
+            name.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             loginName.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 8),
             loginName.leadingAnchor.constraint(equalTo: name.leadingAnchor),
+            loginName.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             description.topAnchor.constraint(equalTo: loginName.bottomAnchor, constant: 8),
             description.leadingAnchor.constraint(equalTo: loginName.leadingAnchor),
+            description.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             button.heightAnchor.constraint(equalToConstant: 24),
             button.widthAnchor.constraint(equalToConstant: 24),
             button.centerYAnchor.constraint(equalTo: avatar.centerYAnchor),
@@ -51,6 +54,7 @@ extension ProfileViewController {
     // MARK: - NameLabel
     private func getNameLabel() -> UILabel {
         let label = UILabel()
+        label.numberOfLines = 0
         label.text = "Екатерина Новикова"
         label.textColor = .ypWhite
         label.font = label.font.withSize(23)
@@ -61,6 +65,7 @@ extension ProfileViewController {
     // MARK: - LoginNameLabel
     private func getLoginNameLabel() -> UILabel {
         let label = UILabel()
+        label.numberOfLines = 0
         label.text = "@ekaterina_nov"
         label.textColor = .ypGray
         label.font = label.font.withSize(13)
@@ -71,6 +76,7 @@ extension ProfileViewController {
     // MARK: - DescriptionLabel
     private func getDescriptionLabel() -> UILabel {
         let label = UILabel()
+        label.numberOfLines = 0
         label.text = "Hello world!"
         label.textColor = .ypWhite
         label.font = label.font.withSize(13)
