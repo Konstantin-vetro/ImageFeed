@@ -48,13 +48,12 @@ extension OAuth2Service {
                 Result { try decoder.decode(OAuthTokenResponseBody.self, from: data) }
             }
             completion(response)
-            print(response)
         }
     }
     
     private func authTokenRequest(code: String) -> URLRequest {
         URLRequest.makeHTTPRequest(
-            path: "/oauth/token"
+            path: APIKeys.bearerToken
             + "?client_id=\(APIKeys.AccessKey)"
             + "&&client_secret=\(APIKeys.SecretKey)"
             + "&&redirect_uri=\(APIKeys.RedirectURI)"
