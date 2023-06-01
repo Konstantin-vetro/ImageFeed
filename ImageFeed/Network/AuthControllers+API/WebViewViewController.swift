@@ -107,3 +107,10 @@ extension WebViewViewController {
         progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
     }
 }
+
+// MARK: - Status Bar
+extension WebViewViewController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
+}

@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -210,7 +209,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eo7-iD-VCE">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="848"/>
                                 <color key="backgroundColor" name="YP White"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -218,9 +217,10 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1p-Dg-r9k">
-                                <rect key="frame" x="8" y="59" width="24" height="24"/>
+                                <rect key="frame" x="0.0" y="48" width="64" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="Iok-8C-hzP"/>
+                                    <constraint firstAttribute="height" constant="44" id="Iok-8C-hzP"/>
+                                    <constraint firstAttribute="width" constant="64" id="fIX-A1-3le"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="backButtonBlack"/>
@@ -229,20 +229,20 @@
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aJf-aq-oGt">
-                                <rect key="frame" x="0.0" y="83" width="414" height="2.5"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="2.5"/>
                                 <color key="progressTintColor" name="YP Black"/>
                             </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wip-R5-uhW"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="YP White"/>
                         <constraints>
-                            <constraint firstItem="z1p-Dg-r9k" firstAttribute="leading" secondItem="Wip-R5-uhW" secondAttribute="leading" constant="8" id="2GB-sc-nmm"/>
-                            <constraint firstItem="eo7-iD-VCE" firstAttribute="leading" secondItem="Wip-R5-uhW" secondAttribute="leading" id="5vY-MX-3fJ"/>
-                            <constraint firstItem="Wip-R5-uhW" firstAttribute="trailing" secondItem="eo7-iD-VCE" secondAttribute="trailing" id="A9X-YJ-lI8"/>
+                            <constraint firstItem="z1p-Dg-r9k" firstAttribute="leading" secondItem="QX0-fZ-XKR" secondAttribute="leading" id="2GB-sc-nmm"/>
+                            <constraint firstItem="eo7-iD-VCE" firstAttribute="leading" secondItem="QX0-fZ-XKR" secondAttribute="leading" id="5vY-MX-3fJ"/>
+                            <constraint firstAttribute="trailing" secondItem="eo7-iD-VCE" secondAttribute="trailing" id="A9X-YJ-lI8"/>
                             <constraint firstAttribute="trailing" secondItem="aJf-aq-oGt" secondAttribute="trailing" id="Agc-on-BQb"/>
-                            <constraint firstItem="Wip-R5-uhW" firstAttribute="bottom" secondItem="eo7-iD-VCE" secondAttribute="bottom" id="LNy-Gb-0T7"/>
+                            <constraint firstAttribute="bottom" secondItem="eo7-iD-VCE" secondAttribute="bottom" id="LNy-Gb-0T7"/>
                             <constraint firstItem="z1p-Dg-r9k" firstAttribute="bottom" secondItem="aJf-aq-oGt" secondAttribute="top" id="m84-c7-QXT"/>
-                            <constraint firstItem="z1p-Dg-r9k" firstAttribute="top" secondItem="Wip-R5-uhW" secondAttribute="top" constant="11" id="qNO-8O-4yx"/>
+                            <constraint firstItem="z1p-Dg-r9k" firstAttribute="top" secondItem="Wip-R5-uhW" secondAttribute="top" id="qNO-8O-4yx"/>
                             <constraint firstItem="aJf-aq-oGt" firstAttribute="leading" secondItem="QX0-fZ-XKR" secondAttribute="leading" id="sG7-iT-zwo"/>
                             <constraint firstItem="eo7-iD-VCE" firstAttribute="top" secondItem="Wip-R5-uhW" secondAttribute="top" id="zff-q1-v4i"/>
                         </constraints>
@@ -260,7 +260,6 @@
         <!--Navigation Controller-->
         <scene sceneID="yLz-c9-Px8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ymh-47-EcM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="iST-iR-q1E" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="JFz-IQ-I6t"/>
                     <toolbarItems/>
@@ -277,6 +276,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="j5r-cy-aOA"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ymh-47-EcM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-852" y="-382"/>
         </scene>
@@ -341,8 +341,5 @@
         <namedColor name="YP White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

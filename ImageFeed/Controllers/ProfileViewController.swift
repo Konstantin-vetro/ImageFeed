@@ -90,3 +90,10 @@ extension ProfileViewController {
         print("tap")
     }
 }
+
+// MARK: - Status Bar
+extension ProfileViewController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}

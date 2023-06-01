@@ -5,6 +5,7 @@
 
 import UIKit
 
+// MARK: - AuthViewControllerDelegate
 protocol AuthViewControllerDelegate: AnyObject {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String)
 }
@@ -34,7 +35,7 @@ final class AuthViewController: UIViewController {
         }
     }
 }
-// MARK: - delegateProtocol
+// MARK: - WebViewViewControllerDelegate
 extension AuthViewController: WebViewViewControllerDelegate {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         oAuth2Service.fetchOAuthToken(code) { [weak self] result in
@@ -55,4 +56,9 @@ extension AuthViewController: WebViewViewControllerDelegate {
         dismiss(animated: true)
     }
 }
-
+// MARK: - Status Bar
+extension AuthViewController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
