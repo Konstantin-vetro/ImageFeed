@@ -19,9 +19,14 @@ class ImagesListViewController: UIViewController {
     
     @IBOutlet private var tableView: UITableView!
     
-    // MARK: - LifeCycle
+// MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+    }
+    
+// MARK: - TableView
+    private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: ImagesListCell.reuseIdentifier,
@@ -31,7 +36,7 @@ class ImagesListViewController: UIViewController {
     }
 }
 
-// MARK: - TableView DataSource
+// MARK: - UITableViewDataSource
 extension ImagesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,7 +55,7 @@ extension ImagesListViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - TableView Delegate
+// MARK: - UITableViewDelegate
 extension ImagesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: showSingleImageSegueIdentifier, sender: indexPath)

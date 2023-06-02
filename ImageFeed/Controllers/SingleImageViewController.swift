@@ -17,7 +17,7 @@ final class SingleImageViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    // MARK: - LifeCycle
+// MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image = image
@@ -30,7 +30,7 @@ final class SingleImageViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: - Shared
+// MARK: - Shared
     @IBAction private func didTapShareButton() {
         let share = UIActivityViewController(
             activityItems: [image as Any],
@@ -39,7 +39,7 @@ final class SingleImageViewController: UIViewController {
         present(share, animated: true, completion: nil)
     }
     
-    // MARK: - Rescale Algorithm
+// MARK: - Rescale Algorithm
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
         let minZoomScale = scrollView.minimumZoomScale
         let maxZoomScale = scrollView.maximumZoomScale

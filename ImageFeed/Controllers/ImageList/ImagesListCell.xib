@@ -54,7 +54,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="cellImage" destination="HBG-Lb-mGK" id="mMs-QD-nLU"/>
+                <outlet property="cellImage" destination="HBG-Lb-mGK" id="Fgj-Ob-VTh"/>
                 <outlet property="dateLabel" destination="03m-1u-fVe" id="2B3-tK-H6r"/>
                 <outlet property="likeButton" destination="CuW-MN-L68" id="Fac-yj-ISl"/>
             </connections>
