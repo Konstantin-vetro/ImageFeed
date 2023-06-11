@@ -27,6 +27,8 @@
 		06ACD0452A2552AB00F33895 /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ACD0442A2552AB00F33895 /* URLRequest+Extensions.swift */; };
 		06ACD0482A26616F00F33895 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ACD0472A26616F00F33895 /* SplashViewController.swift */; };
 		06C0A3E82A2910A5004D3E92 /* OAuthTokenResponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A3E72A2910A5004D3E92 /* OAuthTokenResponseBody.swift */; };
+		06C0A42A2A33CC18004D3E92 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 06C0A4292A33CC18004D3E92 /* ProgressHUD */; };
+		06C0A42C2A3663DA004D3E92 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A42B2A3663DA004D3E92 /* UIBlockingProgressHUD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,7 @@
 		06ACD0442A2552AB00F33895 /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
 		06ACD0472A26616F00F33895 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		06C0A3E72A2910A5004D3E92 /* OAuthTokenResponseBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthTokenResponseBody.swift; sourceTree = "<group>"; };
+		06C0A42B2A3663DA004D3E92 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06C0A42A2A33CC18004D3E92 /* ProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +173,7 @@
 			children = (
 				06ACD0402A25494D00F33895 /* OAuth2 */,
 				06ACD0372A22A12500F33895 /* AuthControllers+API */,
+				06C0A42B2A3663DA004D3E92 /* UIBlockingProgressHUD.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -189,6 +194,9 @@
 			dependencies = (
 			);
 			name = ImageFeed;
+			packageProductDependencies = (
+				06C0A4292A33CC18004D3E92 /* ProgressHUD */,
+			);
 			productName = ImageFeed;
 			productReference = 06419A1329FADE9F0080FC82 /* ImageFeed.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +225,9 @@
 				Base,
 			);
 			mainGroup = 06419A0A29FADE9E0080FC82;
+			packageReferences = (
+				06C0A4282A33CC18004D3E92 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+			);
 			productRefGroup = 06419A1429FADE9F0080FC82 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -261,6 +272,7 @@
 				06ACD0452A2552AB00F33895 /* URLRequest+Extensions.swift in Sources */,
 				06ACD0362A22A04600F33895 /* AuthViewController.swift in Sources */,
 				06419A1929FADE9F0080FC82 /* SceneDelegate.swift in Sources */,
+				06C0A42C2A3663DA004D3E92 /* UIBlockingProgressHUD.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +502,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		06C0A4282A33CC18004D3E92 /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		06C0A4292A33CC18004D3E92 /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06C0A4282A33CC18004D3E92 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 06419A0B29FADE9E0080FC82 /* Project object */;
 }
