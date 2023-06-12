@@ -29,6 +29,8 @@
 		06C0A3E82A2910A5004D3E92 /* OAuthTokenResponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A3E72A2910A5004D3E92 /* OAuthTokenResponseBody.swift */; };
 		06C0A42A2A33CC18004D3E92 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 06C0A4292A33CC18004D3E92 /* ProgressHUD */; };
 		06C0A42C2A3663DA004D3E92 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A42B2A3663DA004D3E92 /* UIBlockingProgressHUD.swift */; };
+		06C0A42E2A366CF9004D3E92 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A42D2A366CF9004D3E92 /* ProfileService.swift */; };
+		06C0A4302A366E9A004D3E92 /* ProfileResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A42F2A366E9A004D3E92 /* ProfileResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		06ACD0472A26616F00F33895 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		06C0A3E72A2910A5004D3E92 /* OAuthTokenResponseBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthTokenResponseBody.swift; sourceTree = "<group>"; };
 		06C0A42B2A3663DA004D3E92 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
+		06C0A42D2A366CF9004D3E92 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		06C0A42F2A366E9A004D3E92 /* ProfileResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				06C0A3E72A2910A5004D3E92 /* OAuthTokenResponseBody.swift */,
+				06C0A42F2A366E9A004D3E92 /* ProfileResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 				06ACD0402A25494D00F33895 /* OAuth2 */,
 				06ACD0372A22A12500F33895 /* AuthControllers+API */,
 				06C0A42B2A3663DA004D3E92 /* UIBlockingProgressHUD.swift */,
+				06C0A42D2A366CF9004D3E92 /* ProfileService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -258,6 +264,7 @@
 			files = (
 				06ACD03F2A25487400F33895 /* OAuth2TokenStorage.swift in Sources */,
 				06ACD0392A22A24700F33895 /* WebViewViewController.swift in Sources */,
+				06C0A4302A366E9A004D3E92 /* ProfileResult.swift in Sources */,
 				06ACD0342A22853F00F33895 /* Contacts.swift in Sources */,
 				06ACD03D2A252DF200F33895 /* OAuth2Service.swift in Sources */,
 				06419A1B29FADE9F0080FC82 /* ImagesListViewController.swift in Sources */,
@@ -267,6 +274,7 @@
 				0642A9362A0D533300D39FD4 /* ProfileViewController.swift in Sources */,
 				06419A1729FADE9F0080FC82 /* AppDelegate.swift in Sources */,
 				06ACD0482A26616F00F33895 /* SplashViewController.swift in Sources */,
+				06C0A42E2A366CF9004D3E92 /* ProfileService.swift in Sources */,
 				0642A9412A0EF99D00D39FD4 /* UIColor+Extensions.swift in Sources */,
 				0642A9392A0D7BB200D39FD4 /* SingleImageViewController.swift in Sources */,
 				06ACD0452A2552AB00F33895 /* URLRequest+Extensions.swift in Sources */,

@@ -12,7 +12,7 @@ enum APIKeys {
     static let AccessScope = "public+read_user+write_likes"
     static let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
     static let bearerToken = "https://unsplash.com/oauth/token"
-    static let DefaultBaseURL: URL = URL(string: "https://api.unsplash.com")!
+    static let defaultBaseURL: URL = URL(string: "https://api.unsplash.com")!
 }
 
 
