@@ -13,15 +13,13 @@ final class ProfileService {
     private var task: URLSessionTask?
     private var lastToken: String?
     
-    private init() {}
-    
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void) {
         assert(Thread.isMainThread)
         if lastToken == token { return }
         task?.cancel()
         lastToken = token
         let request = makeRequest(token: token)
-        let task = object(for: request) { [weak self] result in
+        let task = urlSession.objectTask(for: request) { [weak self] (result: Result<ProfileResult, Error>) in
             guard let self else { return }
             switch result {
             case .success(let body):
@@ -36,20 +34,6 @@ final class ProfileService {
         }
         self.task = task
         task.resume()
-    }
-    
-    private func object(
-        for request: URLRequest,
-        completion: @escaping (Result<ProfileResult, Error>) -> Void
-    ) -> URLSessionTask {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return urlSession.data(for: request) { (result: Result<Data, Error>) in
-            let response = result.flatMap { data -> Result<ProfileResult, Error> in
-                Result { try decoder.decode(ProfileResult.self, from: data) }
-            }
-            completion(response)
-        }
     }
     
     private func makeRequest(token: String) -> URLRequest {
