@@ -4,11 +4,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
-    
     private let profileService = ProfileService.shared
-    
+    private var profileImageServiceObserver: NSObjectProtocol?
+    private let avatarPlaceHolder = UIImage(systemName: "person.crop.circle.fill")
+
+// MARK: - UI-elements
     let avatar: UIImageView = {
         let profileImage = UIImage(named: "Photo Profile")
         let imageView = UIImageView(image: profileImage)
@@ -47,18 +50,28 @@ final class ProfileViewController: UIViewController {
         let image = UIImage(named: "logout icon")
         let button = UIButton.systemButton(
             with: image ?? UIImage(),
-            target: self,
+            target: ProfileViewController.self,
             action: #selector(didTapLogoutButton)
         )
         button.tintColor = .ypRed
         return button
     }()
-
+// MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ypBlack
         setupUI()
         updateProfileDetails(profile: profileService.profile)
+        
+        profileImageServiceObserver = NotificationCenter.default
+            .addObserver(forName: ProfileImageService.didChangeNotification,
+                         object: nil,
+                         queue: .main
+            ) { [weak self] _ in
+                guard let self else { return }
+                self.updateAvatar()
+            }
+        updateAvatar()
     }
     
     @objc private func didTapLogoutButton(_ sender: UIButton) {
@@ -66,7 +79,7 @@ final class ProfileViewController: UIViewController {
     }
 }
 
-// MARK: - SetupUI
+// MARK: - SetupUI-elements
 private extension ProfileViewController {
     private func setupUI() {
         [avatar, nameLabel, loginNameLabel, descriptionLabel, logoutButton].forEach {
@@ -97,6 +110,26 @@ private extension ProfileViewController {
             logoutButton.centerYAnchor.constraint(equalTo: avatar.centerYAnchor),
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
         ])
+    }
+}
+
+// MARK: - Update Avatar
+extension ProfileViewController {
+    private func updateAvatar() {
+        guard
+            let profileImageURL = ProfileImageService.shared.avatarURL,
+            let url = URL(string: profileImageURL)
+        else { return }
+        avatar.kf.indicatorType = IndicatorType.activity
+        avatar.kf.setImage(with: url, placeholder: avatarPlaceHolder) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let image):
+                self.avatar.image = image.image
+            case .failure:
+                self.avatar.image = self.avatarPlaceHolder
+            }
+        }
     }
 }
 
