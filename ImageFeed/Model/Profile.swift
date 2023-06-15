@@ -6,14 +6,14 @@
 import Foundation
 
 struct Profile: Codable {
-    let userName: String?
+    let username: String?
     let name: String?
     let loginName: String
     let bio: String?
     init(ProfileResult: ProfileResult) {
-        self.userName = ProfileResult.userName
+        self.username = ProfileResult.username
         self.name = (ProfileResult.firstName ?? "") + " " + (ProfileResult.lastName ?? "")
-        self.loginName = "@" + (ProfileResult.userName ?? "")
+        self.loginName = "@" + (ProfileResult.username ?? "")
         self.bio = ProfileResult.bio
     }
 }

@@ -9,13 +9,14 @@ import Kingfisher
 final class ProfileViewController: UIViewController {
     private let profileService = ProfileService.shared
     private var profileImageServiceObserver: NSObjectProtocol?
-    private let avatarPlaceHolder = UIImage(systemName: "person.crop.circle.fill")
+    private let avatarPlaceHolder = UIImage(named: "placeholder.png")
 
 // MARK: - UI-elements
     let avatar: UIImageView = {
         let profileImage = UIImage(named: "Photo Profile")
         let imageView = UIImageView(image: profileImage)
         imageView.tintColor = .gray
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -120,8 +121,13 @@ extension ProfileViewController {
             let profileImageURL = ProfileImageService.shared.avatarURL,
             let url = URL(string: profileImageURL)
         else { return }
+        let cache = ImageCache.default
+        cache.clearMemoryCache()
+        cache.clearDiskCache()
+        
+        let processor = RoundCornerImageProcessor(cornerRadius: 61)
         avatar.kf.indicatorType = IndicatorType.activity
-        avatar.kf.setImage(with: url, placeholder: avatarPlaceHolder) { [weak self] result in
+        avatar.kf.setImage(with: url, placeholder: avatarPlaceHolder, options: [.processor(processor)]) { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let image):
@@ -134,7 +140,7 @@ extension ProfileViewController {
 }
 
 // MARK: - Setup Profile
-extension ProfileViewController {
+private extension ProfileViewController {
     func updateProfileDetails(profile: Profile?) {
         guard let profile = profile else { return }
         nameLabel.text = profile.name

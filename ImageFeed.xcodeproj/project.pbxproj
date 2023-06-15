@@ -33,9 +33,8 @@
 		06C0A4302A366E9A004D3E92 /* ProfileResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A42F2A366E9A004D3E92 /* ProfileResult.swift */; };
 		06C0A4332A37867D004D3E92 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A4322A37867D004D3E92 /* Profile.swift */; };
 		06C0A4352A3786EF004D3E92 /* ProfileImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A4342A3786EF004D3E92 /* ProfileImageService.swift */; };
-		06C0A4372A38B7D6004D3E92 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A4362A38B7D6004D3E92 /* AlertPresenter.swift */; };
 		06C0A43A2A38E1A5004D3E92 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 06C0A4392A38E1A5004D3E92 /* Kingfisher */; };
-		06C0A43C2A390AD8004D3E92 /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A43B2A390AD8004D3E92 /* UserResult.swift */; };
+		06C0A43C2A390AD8004D3E92 /* ProfileImageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A43B2A390AD8004D3E92 /* ProfileImageURL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,8 +65,7 @@
 		06C0A42F2A366E9A004D3E92 /* ProfileResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResult.swift; sourceTree = "<group>"; };
 		06C0A4322A37867D004D3E92 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		06C0A4342A3786EF004D3E92 /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
-		06C0A4362A38B7D6004D3E92 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
-		06C0A43B2A390AD8004D3E92 /* UserResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResult.swift; sourceTree = "<group>"; };
+		06C0A43B2A390AD8004D3E92 /* ProfileImageURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +141,6 @@
 				06ACD0382A22A24700F33895 /* WebViewViewController.swift */,
 				06ACD0352A22A04600F33895 /* AuthViewController.swift */,
 				06ACD0332A22853F00F33895 /* Constants.swift */,
-				06C0A4362A38B7D6004D3E92 /* AlertPresenter.swift */,
 			);
 			path = "AuthControllers+API";
 			sourceTree = "<group>";
@@ -162,7 +159,7 @@
 				06C0A3E72A2910A5004D3E92 /* OAuthTokenResponseBody.swift */,
 				06C0A42F2A366E9A004D3E92 /* ProfileResult.swift */,
 				06C0A4322A37867D004D3E92 /* Profile.swift */,
-				06C0A43B2A390AD8004D3E92 /* UserResult.swift */,
+				06C0A43B2A390AD8004D3E92 /* ProfileImageURL.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -287,14 +284,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				06ACD03F2A25487400F33895 /* OAuth2TokenStorage.swift in Sources */,
-				06C0A4372A38B7D6004D3E92 /* AlertPresenter.swift in Sources */,
 				06C0A4332A37867D004D3E92 /* Profile.swift in Sources */,
 				06ACD0392A22A24700F33895 /* WebViewViewController.swift in Sources */,
 				06C0A4302A366E9A004D3E92 /* ProfileResult.swift in Sources */,
 				06ACD0342A22853F00F33895 /* Constants.swift in Sources */,
 				06ACD03D2A252DF200F33895 /* OAuth2Service.swift in Sources */,
 				06419A1B29FADE9F0080FC82 /* ImagesListViewController.swift in Sources */,
-				06C0A43C2A390AD8004D3E92 /* UserResult.swift in Sources */,
+				06C0A43C2A390AD8004D3E92 /* ProfileImageURL.swift in Sources */,
 				0642A90929FC653900D39FD4 /* ImagesListCell.swift in Sources */,
 				06C0A3E82A2910A5004D3E92 /* OAuthTokenResponseBody.swift in Sources */,
 				06ACD0432A25527700F33895 /* URLSession+Extensions.swift in Sources */,

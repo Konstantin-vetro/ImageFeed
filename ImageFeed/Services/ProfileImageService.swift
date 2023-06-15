@@ -23,7 +23,7 @@ final class ProfileImageService {
         
         task?.cancel()
         lastUserName = username
-        let task = urlSession.objectTask(for: request) { [weak self] (result: Result<UserResult, Error>) in
+        let task = urlSession.objectTask(for: request) { [weak self] (result: Result<ProfileImageURL, Error>) in
             guard let self else { return }
             switch result {
             case .success(let image):
@@ -47,7 +47,7 @@ final class ProfileImageService {
     
     private func makeRequest(token: String, username: String) -> URLRequest {
         var request = URLRequest.makeHTTPRequest(
-            path: "/users/:username",
+            path: "/users/\(username)",
             httpMethod: "GET"
         )
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
