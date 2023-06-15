@@ -21,6 +21,11 @@ final class WebViewViewController: UIViewController {
     @IBOutlet private weak var progressView: UIProgressView!
 // MARK: - lifeCycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self

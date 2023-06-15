@@ -56,6 +56,11 @@ final class SingleImageViewController: UIViewController {
         let y = (newContentSize.height - visibleRectSize.height) / 2
         scrollView.setContentOffset(CGPoint(x: x, y: y), animated: false)
     }
+    
+// MARK: - StatusBar
+        override var preferredStatusBarStyle: UIStatusBarStyle {
+            .lightContent
+        }
 }
 
 // MARK: - ScrollViewDelegate

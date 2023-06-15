@@ -36,6 +36,7 @@
 		06C0A43A2A38E1A5004D3E92 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 06C0A4392A38E1A5004D3E92 /* Kingfisher */; };
 		06C0A43C2A390AD8004D3E92 /* ProfileImageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A43B2A390AD8004D3E92 /* ProfileImageURL.swift */; };
 		06C0A43F2A3B82E5004D3E92 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 06C0A43E2A3B82E5004D3E92 /* SwiftKeychainWrapper */; };
+		06C0A4412A3B8E11004D3E92 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0A4402A3B8E10004D3E92 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		06C0A4322A37867D004D3E92 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		06C0A4342A3786EF004D3E92 /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
 		06C0A43B2A390AD8004D3E92 /* ProfileImageURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageURL.swift; sourceTree = "<group>"; };
+		06C0A4402A3B8E10004D3E92 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				0642A90A29FC657300D39FD4 /* ImageList */,
 				0642A9382A0D7BB200D39FD4 /* SingleImageViewController.swift */,
 				0642A9352A0D533300D39FD4 /* ProfileViewController.swift */,
+				06C0A4402A3B8E10004D3E92 /* TabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				06ACD0392A22A24700F33895 /* WebViewViewController.swift in Sources */,
 				06C0A4302A366E9A004D3E92 /* ProfileResult.swift in Sources */,
 				06ACD0342A22853F00F33895 /* Constants.swift in Sources */,
+				06C0A4412A3B8E11004D3E92 /* TabBarController.swift in Sources */,
 				06ACD03D2A252DF200F33895 /* OAuth2Service.swift in Sources */,
 				06419A1B29FADE9F0080FC82 /* ImagesListViewController.swift in Sources */,
 				06C0A43C2A390AD8004D3E92 /* ProfileImageURL.swift in Sources */,
