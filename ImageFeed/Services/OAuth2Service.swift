@@ -20,6 +20,8 @@ final class OAuth2Service {
         }
     }
     
+    private init() {}
+    
     func fetchOAuthToken(_ code: String,
                          completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)

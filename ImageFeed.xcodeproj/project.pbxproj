@@ -104,12 +104,12 @@
 		06419A1529FADE9F0080FC82 /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
-				06C0A4312A37862E004D3E92 /* Services */,
 				06C0A3EB2A291175004D3E92 /* Network */,
 				06C0A3E62A291067004D3E92 /* Model */,
 				06C0A3E92A2910F4004D3E92 /* View */,
 				06C0A3EA2A291131004D3E92 /* Controllers */,
 				0642A93F2A0EF97200D39FD4 /* Helpers */,
+				06C0A4312A37862E004D3E92 /* Services */,
 				06419A1829FADE9F0080FC82 /* SceneDelegate.swift */,
 				06419A1629FADE9F0080FC82 /* AppDelegate.swift */,
 				06419A1F29FADEA30080FC82 /* Assets.xcassets */,
@@ -466,7 +466,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -500,7 +500,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

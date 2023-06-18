@@ -15,6 +15,8 @@ final class ProfileImageService {
     private var tokenStorage = OAuth2TokenStorage.shared
     private var lastUserName: String?
     
+    private init() {}
+    
     func fetchProfileImageURL(_ username: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
         guard lastUserName != username else { return }

@@ -12,7 +12,7 @@ final class ProfileViewController: UIViewController {
     private let avatarPlaceHolder = UIImage(named: "placeholder.png")
 
 // MARK: - UI-elements
-    let avatar: UIImageView = {
+    private lazy var avatar: UIImageView = {
         let profileImage = UIImage(named: "Photo Profile")
         let imageView = UIImageView(image: profileImage)
         imageView.tintColor = .gray
@@ -20,7 +20,7 @@ final class ProfileViewController: UIViewController {
         return imageView
     }()
     
-    let nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "Екатерина Новикова"
@@ -29,7 +29,7 @@ final class ProfileViewController: UIViewController {
         return label
     }()
     
-    let loginNameLabel: UILabel = {
+    private lazy var loginNameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "@ekaterina_nov"
@@ -38,7 +38,7 @@ final class ProfileViewController: UIViewController {
         return label
     }()
     
-    let descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "Hello world!"
@@ -47,7 +47,7 @@ final class ProfileViewController: UIViewController {
         return label
     }()
     
-    let logoutButton: UIButton = {
+    private lazy var logoutButton: UIButton = {
         let image = UIImage(named: "logout icon")
         let button = UIButton.systemButton(
             with: image ?? UIImage(),
@@ -125,9 +125,8 @@ extension ProfileViewController {
         cache.clearMemoryCache()
         cache.clearDiskCache()
         
-        let processor = RoundCornerImageProcessor(cornerRadius: 61)
         avatar.kf.indicatorType = IndicatorType.activity
-        avatar.kf.setImage(with: url, placeholder: avatarPlaceHolder, options: [.processor(processor)]) { [weak self] result in
+        avatar.kf.setImage(with: url, placeholder: avatarPlaceHolder) { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let image):
