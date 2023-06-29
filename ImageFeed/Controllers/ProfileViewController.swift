@@ -13,10 +13,9 @@ final class ProfileViewController: UIViewController {
 
 // MARK: - UI-elements
     private lazy var avatar: UIImageView = {
-        let profileImage = UIImage(named: "Photo Profile")
+        let profileImage = avatarPlaceHolder
         let imageView = UIImageView(image: profileImage)
         imageView.tintColor = .gray
-        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -75,12 +74,13 @@ final class ProfileViewController: UIViewController {
         updateAvatar()
     }
     
-    @objc private func didTapLogoutButton(_ sender: UIButton) {
+    @objc
+    private func didTapLogoutButton(_ sender: UIButton) {
         print("tap")
     }
 }
 
-// MARK: - SetupUI-elements
+// MARK: - Layouts
 private extension ProfileViewController {
     private func setupUI() {
         [avatar, nameLabel, loginNameLabel, descriptionLabel, logoutButton].forEach {

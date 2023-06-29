@@ -6,25 +6,29 @@ import UIKit
 
 final class ProfileImageService {
     static let shared = ProfileImageService()
+    private let builder: URLRequestBuilder
     static let didChangeNotification = Notification.Name("ProfileImageProviderDidChange")
     
     private (set) var avatarURL: String?
     
-    private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     private var tokenStorage = OAuth2TokenStorage.shared
     private var lastUserName: String?
     
-    private init() {}
+    init(builder: URLRequestBuilder = .shared) {
+        self.builder = builder
+    }
     
     func fetchProfileImageURL(_ username: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
         guard lastUserName != username else { return }
         guard let token = tokenStorage.token else { return }
-        let request = makeRequest(token: token, username: username)
+        guard let request = makeRequest(token: token, username: username) else { return }
         
         task?.cancel()
         lastUserName = username
+        
+        let urlSession = URLSession.shared
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<ProfileImageURL, Error>) in
             guard let self else { return }
             switch result {
@@ -47,12 +51,11 @@ final class ProfileImageService {
         task.resume()
     }
     
-    private func makeRequest(token: String, username: String) -> URLRequest {
-        var request = URLRequest.makeHTTPRequest(
+    private func makeRequest(token: String, username: String) -> URLRequest? {
+        builder.makeHTTPRequest(
             path: "/users/\(username)",
-            httpMethod: "GET"
+            httpMethod: "GET",
+            baseURL: String(describing: APIKeys.defaultBaseURL)
         )
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        return request
     }
 }

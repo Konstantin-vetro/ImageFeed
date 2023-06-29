@@ -7,20 +7,24 @@ import Foundation
 
 final class ProfileService {
     static let shared = ProfileService()
+    private let builder: URLRequestBuilder
     
-    private let urlSession = URLSession.shared
     private(set) var profile: Profile?
     private var task: URLSessionTask?
     private var lastToken: String?
     
-    private init() {}
+    init(builder: URLRequestBuilder = .shared) {
+        self.builder = builder
+    }
     
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void) {
         assert(Thread.isMainThread)
         if lastToken == token { return }
         task?.cancel()
         lastToken = token
-        let request = makeRequest(token: token)
+        guard let request = makeRequest(token: token) else { return }
+        
+        let urlSession = URLSession.shared
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<ProfileResult, Error>) in
             guard let self else { return }
             switch result {
@@ -38,12 +42,11 @@ final class ProfileService {
         task.resume()
     }
     
-    private func makeRequest(token: String) -> URLRequest {
-        var request = URLRequest.makeHTTPRequest(
+    private func makeRequest(token: String) -> URLRequest? {
+        builder.makeHTTPRequest(
             path: "me",
-            httpMethod: "GET"
+            httpMethod: "GET",
+            baseURL: String(describing: APIKeys.defaultBaseURL)
         )
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        return request
     }
 }

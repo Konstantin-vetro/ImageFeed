@@ -7,9 +7,9 @@ import Foundation
 
 final class OAuth2Service {
     static let shared = OAuth2Service()
-    private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     private var lastCode: String?
+    private let builder: URLRequestBuilder
     
     private (set) var authToken: String? {
         get {
@@ -20,7 +20,9 @@ final class OAuth2Service {
         }
     }
     
-    private init() {}
+    init(builder: URLRequestBuilder = .shared) {
+        self.builder = builder
+    }
     
     func fetchOAuthToken(_ code: String,
                          completion: @escaping (Result<String, Error>) -> Void) {
@@ -28,7 +30,9 @@ final class OAuth2Service {
         if lastCode == code { return }
         task?.cancel()
         lastCode = code
-        let request = authTokenRequest(code: code)
+        guard let request = authTokenRequest(code: code) else { return }
+        
+        let urlSession = URLSession.shared
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
             DispatchQueue.main.async {
                 guard let self else { return }
@@ -50,8 +54,8 @@ final class OAuth2Service {
 }
 // MARK: - Auth Token Request
 extension OAuth2Service {
-    private func authTokenRequest(code: String) -> URLRequest {
-        URLRequest.makeHTTPRequest(
+    private func authTokenRequest(code: String) -> URLRequest? {
+        builder.makeHTTPRequest(
             path: APIKeys.bearerToken
             + "?client_id=\(APIKeys.AccessKey)"
             + "&&client_secret=\(APIKeys.SecretKey)"
@@ -59,7 +63,7 @@ extension OAuth2Service {
             + "&&code=\(code)"
             + "&&grant_type=authorization_code",
             httpMethod: "POST",
-            baseURL: APIKeys.defaultBaseURL
+            baseURL: String(describing: APIKeys.defaultBaseURL)
         )
     }
 }
