@@ -5,6 +5,7 @@
 
 import Foundation
 
+
 struct Photo: Codable {
     let id: String
     let size: CGSize
@@ -16,26 +17,25 @@ struct Photo: Codable {
     init(photoResult: PhotoResult) {
         self.id = photoResult.id
         self.size = CGSize(width: photoResult.width, height: photoResult.height)
-        self.createdAt = photoResult.createdAt
-        self.isLiked = photoResult.likeByUser
+        self.createdAt = ISO8601DateFormatter().date(from: photoResult.createdAt ?? "")
+        self.isLiked = photoResult.likedByUser
         self.welcomeDescription = photoResult.description
-        self.largeImageURL = photoResult.urls.full
-        self.thumbImageURL = photoResult.urls.thumb
+        self.largeImageURL = photoResult.urls?.full ?? ""
+        self.thumbImageURL = photoResult.urls?.thumb ?? ""
     }
 }
 
 struct PhotoResult: Decodable {
     let id: String
-    let createdAt: Date?
+    let createdAt: String?
     let width: Int
     let height: Int
-    let likeByUser: Bool
-    let description: String
-    let urls: UrlsResult
+    let likedByUser: Bool
+    let description: String?
+    let urls: UrlsResult?
 }
 
 struct UrlsResult: Decodable {
-    let full: String
-    let small: String
-    let thumb: String
+    let full: String?
+    let thumb: String?
 }

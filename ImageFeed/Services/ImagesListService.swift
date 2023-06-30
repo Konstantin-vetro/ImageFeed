@@ -10,7 +10,6 @@ final class ImagesListService {
     static let didChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
     
     private let builder: URLRequestBuilder
-    private let tokenStorage = OAuth2TokenStorage.shared
     
     private (set) var photos: [Photo] = []
     
@@ -25,17 +24,11 @@ final class ImagesListService {
         assert(Thread.isMainThread)
         if currentTask != nil {
             currentTask?.cancel()
-            return
         }
         
-        guard let token = tokenStorage.token else {
-            print("Не удалось получить токен")
-            return
-        }
+        let nextPage = lastLoadedPage == nil ? 1 : lastLoadedPage! + 1
         
-        let nextPage = lastLoadedPage == nil ? 1 : (lastLoadedPage ?? 0) + 1
-        
-        guard let request = makeRequest(token: token, page: nextPage) else {
+        guard let request = makeRequest(page: nextPage) else {
             print("запрос не удался")
             return
         }
@@ -44,37 +37,42 @@ final class ImagesListService {
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<[PhotoResult], Error>) in
             guard let self = self else { return }
             
-            switch result {
-            case .success(let photos):
-                let newPhotos = photos.map { Photo(photoResult: $0) }
-                self.photos.append(contentsOf: newPhotos)
-                NotificationCenter.default
-                    .post(
-                        name: ImagesListService.didChangeNotification,
-                        object: nil)
-                self.lastLoadedPage! += 1
-            case .failure(let error):
-                print(error.localizedDescription)
-                self.currentTask = nil
-                self.lastLoadedPage = nil
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let photoResults):
+                        let newPhotos = photoResults.map { Photo(photoResult: $0) }
+                        self.photos.append(contentsOf: newPhotos)
+                    
+                    NotificationCenter.default
+                        .post(
+                            name: ImagesListService.didChangeNotification,
+                            object: nil)
+                    if self.lastLoadedPage == nil {
+                        self.lastLoadedPage = 1
+                    } else {
+                        self.lastLoadedPage! += 1
+                    }
+                    
+                    self.currentTask = nil
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
         }
         self.currentTask = task
         task.resume()
     }
     
-    func makeRequest(token: String, page: Int) -> URLRequest? {
-//        let queryItems = [
-//            URLQueryItem(name: "page", value: "\(page)"),
-//            URLQueryItem(name: "per_page", value: "10")
-//        ]
+    func makeRequest(page: Int) -> URLRequest? {
+        let queryItems = [
+            URLQueryItem(name: "page", value: "\(page)"),
+            URLQueryItem(name: "per_page", value: "10")
+        ]
         
         return builder.makeHTTPRequest(
-            path: "/photos"
-            + "?page=\(page)"
-            + "&per_page=10",
+            path: "/photos",
             httpMethod: "GET",
-//            queryItems: queryItems,
+            queryItems: queryItems,
             baseURL: String(describing: APIKeys.defaultBaseURL)
         )
     }

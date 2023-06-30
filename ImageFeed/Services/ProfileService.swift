@@ -11,7 +11,6 @@ final class ProfileService {
     
     private(set) var profile: Profile?
     private var task: URLSessionTask?
-    private var lastToken: String?
     
     init(builder: URLRequestBuilder = .shared) {
         self.builder = builder
@@ -19,10 +18,8 @@ final class ProfileService {
     
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void) {
         assert(Thread.isMainThread)
-        if lastToken == token { return }
         task?.cancel()
-        lastToken = token
-        guard let request = makeRequest(token: token) else { return }
+        guard let request = makeRequest() else { return }
         
         let urlSession = URLSession.shared
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<ProfileResult, Error>) in
@@ -35,14 +32,13 @@ final class ProfileService {
                 self.task = nil
             case .failure(let error):
                 completion(.failure(error))
-                self.lastToken = nil
             }
         }
         self.task = task
         task.resume()
     }
     
-    private func makeRequest(token: String) -> URLRequest? {
+    private func makeRequest() -> URLRequest? {
         builder.makeHTTPRequest(
             path: "me",
             httpMethod: "GET",
