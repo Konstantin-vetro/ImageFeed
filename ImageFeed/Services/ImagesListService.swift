@@ -40,20 +40,21 @@ final class ImagesListService {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let photoResults):
-                        let newPhotos = photoResults.map { Photo(photoResult: $0) }
-                        self.photos.append(contentsOf: newPhotos)
-                    
-                    NotificationCenter.default
-                        .post(
-                            name: ImagesListService.didChangeNotification,
-                            object: nil)
                     if self.lastLoadedPage == nil {
                         self.lastLoadedPage = 1
                     } else {
                         self.lastLoadedPage! += 1
                     }
                     
-                    self.currentTask = nil
+                    let newPhotos = photoResults.map { Photo(photoResult: $0) }
+                    self.photos.append(contentsOf: newPhotos)
+
+                    NotificationCenter.default
+                        .post(
+                            name: ImagesListService.didChangeNotification,
+                            object: nil)
+                    
+//                    self.currentTask = nil
                 case .failure(let error):
                     print(error.localizedDescription)
                 }

@@ -17,8 +17,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="HBG-Lb-mGK" userLabel="Cell Image">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="ImagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="HBG-Lb-mGK" userLabel="Cell Image">
                         <rect key="frame" x="16" y="4" width="382" height="216"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="16"/>
@@ -62,7 +63,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="0" width="200" height="132"/>
+        <image name="ImagePlaceholder" width="83" height="75"/>
         <image name="likeButtonOnActive" width="44" height="44"/>
         <namedColor name="YP Black">
             <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

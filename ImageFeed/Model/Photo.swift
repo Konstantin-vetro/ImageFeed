@@ -8,7 +8,7 @@ import Foundation
 
 struct Photo: Codable {
     let id: String
-    let size: CGSize
+    let size: CGSize    //TODO: размер не получает
     let createdAt: Date?
     let welcomeDescription: String?
     let thumbImageURL: String
@@ -20,8 +20,8 @@ struct Photo: Codable {
         self.createdAt = ISO8601DateFormatter().date(from: photoResult.createdAt ?? "")
         self.isLiked = photoResult.likedByUser
         self.welcomeDescription = photoResult.description
-        self.largeImageURL = photoResult.urls?.full ?? ""
-        self.thumbImageURL = photoResult.urls?.thumb ?? ""
+        self.largeImageURL = photoResult.urls.full
+        self.thumbImageURL = photoResult.urls.thumb
     }
 }
 
@@ -32,10 +32,10 @@ struct PhotoResult: Decodable {
     let height: Int
     let likedByUser: Bool
     let description: String?
-    let urls: UrlsResult?
+    let urls: UrlsResult
 }
 
 struct UrlsResult: Decodable {
-    let full: String?
-    let thumb: String?
+    let full: String
+    let thumb: String
 }

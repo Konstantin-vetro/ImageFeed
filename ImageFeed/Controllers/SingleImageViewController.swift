@@ -6,11 +6,10 @@
 import UIKit
 
 final class SingleImageViewController: UIViewController {
-    var image: UIImage! {
+    var image: URL? {
         didSet {
             guard isViewLoaded else { return }
-            imageView.image = image
-            rescaleAndCenterImageInScrollView(image: image)
+            loadAndShowImage(url: image)
         }
     }
     
@@ -20,14 +19,31 @@ final class SingleImageViewController: UIViewController {
 // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = image
-        rescaleAndCenterImageInScrollView(image: image)
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 1.25
+        loadAndShowImage(url: image)
     }
     
     @IBAction private func didTapBackButton() {
         dismiss(animated: true, completion: nil)
+    }
+    
+// MARK: - Load and Show Image
+    private func loadAndShowImage(url: URL?) {
+        guard let url = url else { return }
+        UIBlockingProgressHUD.show()
+        imageView.kf.setImage(with: url) { [weak self] result in
+            UIBlockingProgressHUD.dismiss()
+            
+            guard let self = self else { return }
+            switch result {
+            case .success(let imageResult):
+                self.rescaleAndCenterImageInScrollView(image: imageResult.image)
+            case .failure(let error):
+                print(error.localizedDescription)
+                //                     self.showError(url: url)
+            }
+        }
     }
     
 // MARK: - Shared

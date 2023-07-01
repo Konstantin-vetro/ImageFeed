@@ -58,10 +58,10 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="6aw-HL-sJX" firstAttribute="top" secondItem="7pe-Yr-A60" secondAttribute="top" id="5hn-sg-Otf"/>
-                                    <constraint firstAttribute="bottom" secondItem="6aw-HL-sJX" secondAttribute="bottom" id="QJY-Kz-V5n"/>
-                                    <constraint firstItem="6aw-HL-sJX" firstAttribute="leading" secondItem="7pe-Yr-A60" secondAttribute="leading" id="eUe-Bh-x03"/>
-                                    <constraint firstAttribute="trailing" secondItem="6aw-HL-sJX" secondAttribute="trailing" id="wgw-uJ-8ab"/>
+                                    <constraint firstAttribute="trailing" secondItem="6aw-HL-sJX" secondAttribute="trailing" id="7jK-x7-cPl"/>
+                                    <constraint firstAttribute="bottom" secondItem="6aw-HL-sJX" secondAttribute="bottom" id="BDB-qj-jQR"/>
+                                    <constraint firstItem="6aw-HL-sJX" firstAttribute="leading" secondItem="7pe-Yr-A60" secondAttribute="leading" id="HP6-us-ssu"/>
+                                    <constraint firstItem="6aw-HL-sJX" firstAttribute="top" secondItem="7pe-Yr-A60" secondAttribute="top" id="akr-6e-u0M"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="nqo-H4-ReP"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="bdi-X1-dfc"/>
