@@ -12,7 +12,6 @@ final class ProfileImageService {
     private (set) var avatarURL: String?
     
     private var task: URLSessionTask?
-    private var tokenStorage = OAuth2TokenStorage.shared
     private var lastUserName: String?
     
     init(builder: URLRequestBuilder = .shared) {
@@ -22,8 +21,7 @@ final class ProfileImageService {
     func fetchProfileImageURL(_ username: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
         guard lastUserName != username else { return }
-        guard let token = tokenStorage.token else { return }
-        guard let request = makeRequest(token: token, username: username) else { return }
+        guard let request = makeRequest(username: username) else { return }
         
         task?.cancel()
         lastUserName = username
@@ -51,11 +49,11 @@ final class ProfileImageService {
         task.resume()
     }
     
-    private func makeRequest(token: String, username: String) -> URLRequest? {
+    private func makeRequest(username: String) -> URLRequest? {
         builder.makeHTTPRequest(
             path: "/users/\(username)",
             httpMethod: "GET",
-            baseURL: String(describing: APIKeys.defaultBaseURL)
+            baseURL: APIKeys.defaultBaseURL.absoluteString
         )
     }
 }

@@ -19,7 +19,8 @@ final class ImagesListService {
     init(builder: URLRequestBuilder = .shared) {
         self.builder = builder
     }
-    
+
+// MARK: - Response Photo Next Page
     func fetchPhotosNextPage() {
         assert(Thread.isMainThread)
         if currentTask != nil {
@@ -46,15 +47,13 @@ final class ImagesListService {
                         self.lastLoadedPage! += 1
                     }
                     
-                    let newPhotos = photoResults.map { Photo(photoResult: $0) }
+                    let newPhotos = photoResults.map { $0.convertToPhoto() }
                     self.photos.append(contentsOf: newPhotos)
 
                     NotificationCenter.default
                         .post(
                             name: ImagesListService.didChangeNotification,
                             object: nil)
-                    
-//                    self.currentTask = nil
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -64,6 +63,7 @@ final class ImagesListService {
         task.resume()
     }
     
+// MARK: - Request For Page
     func makeRequest(page: Int) -> URLRequest? {
         let queryItems = [
             URLQueryItem(name: "page", value: "\(page)"),
@@ -78,3 +78,57 @@ final class ImagesListService {
         )
     }
 }
+
+// MARK: - Response Change Like
+extension ImagesListService {
+    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
+        if currentTask != nil {
+            currentTask?.cancel()
+        }
+        
+        guard let request = makeLikeRequest(photoId: photoId, isLike: isLike) else {
+            print("запрос не удался")
+            return
+        }
+        
+        let session = URLSession.shared
+        let task = session.objectTask(for: request) { (result: Result<PhotoLike, Error>) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(_):
+                    if let index = self.photos.firstIndex(where: { $0.id == photoId }) {
+                        let photo = self.photos[index]
+                        let newPhoto = Photo(
+                            id: photo.id,
+                            size: photo.size,
+                            createdAt: photo.createdAt,
+                            welcomeDescription: photo.welcomeDescription,
+                            thumbImageURL: photo.thumbImageURL,
+                            largeImageURL: photo.largeImageURL,
+                            isLiked: !photo.isLiked
+                        )
+                        self.photos = self.photos.withReplaced(itemAt: index, newValue: newPhoto)
+                        completion(.success(()))
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion(.failure(error))
+                }
+            }
+        }
+        self.currentTask = task
+        task.resume()
+    }
+    
+    func makeLikeRequest(
+        photoId: String,
+        isLike: Bool
+    ) -> URLRequest? {
+        builder.makeHTTPRequest(
+            path: "/photos/\(photoId)/like",
+            httpMethod: isLike ? "POST" : "DELETE",
+            baseURL: APIKeys.defaultBaseURL.absoluteString
+        )
+    }
+}
+

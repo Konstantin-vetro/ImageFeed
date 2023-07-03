@@ -42,7 +42,7 @@ final class ProfileService {
         builder.makeHTTPRequest(
             path: "me",
             httpMethod: "GET",
-            baseURL: String(describing: APIKeys.defaultBaseURL)
+            baseURL: APIKeys.defaultBaseURL.absoluteString
         )
     }
 }

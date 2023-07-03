@@ -39,9 +39,8 @@ final class SingleImageViewController: UIViewController {
             switch result {
             case .success(let imageResult):
                 self.rescaleAndCenterImageInScrollView(image: imageResult.image)
-            case .failure(let error):
-                print(error.localizedDescription)
-                //                     self.showError(url: url)
+            case .failure:
+                self.showAlert(url: url)
             }
         }
     }
@@ -83,5 +82,24 @@ final class SingleImageViewController: UIViewController {
 extension SingleImageViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         imageView
+    }
+}
+
+extension SingleImageViewController {
+    private func showAlert(url: URL) {
+        let alert = UIAlertController(title: "Что-то пошло не так(", message: "Попробовать еще раз?", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Повторить", style: .default) { _ in
+            alert.dismiss(animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "Не надо", style: .cancel) { [weak self] _ in
+            guard let self = self else { return }
+            self.loadAndShowImage(url: url)
+        }
+        
+        alert.addAction(action)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
     }
 }
