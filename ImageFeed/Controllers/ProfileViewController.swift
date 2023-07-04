@@ -15,6 +15,8 @@ final class ProfileViewController: UIViewController {
     private lazy var avatar: UIImageView = {
         let profileImage = avatarPlaceHolder
         let imageView = UIImageView(image: profileImage)
+        imageView.layer.cornerRadius = 35
+        imageView.clipsToBounds = true
         imageView.tintColor = .gray
         return imageView
     }()
@@ -48,11 +50,9 @@ final class ProfileViewController: UIViewController {
     
     private lazy var logoutButton: UIButton = {
         let image = UIImage(named: "logout icon")
-        let button = UIButton.systemButton(
-            with: image ?? UIImage(),
-            target: ProfileViewController.self,
-            action: #selector(didTapLogoutButton)
-        )
+        let button = UIButton()
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
         button.tintColor = .ypRed
         return button
     }()
@@ -72,11 +72,27 @@ final class ProfileViewController: UIViewController {
                 self.updateAvatar()
             }
         updateAvatar()
+        avatar.layer.cornerRadius = 35
     }
     
     @objc
-    private func didTapLogoutButton(_ sender: UIButton) {
-        print("tap")
+    private func didTapLogoutButton() {
+        let alert = UIAlertController(title: "Пока Пока!", message: "Уверены что хотите выйти?", preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Да", style: .default, handler: { _ in
+            OAuth2TokenStorage.shared.clean()
+            WebViewViewController.clean()
+            guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
+
+            window.rootViewController = SplashViewController()
+            window.makeKeyAndVisible()
+        })
+        
+        let cancelAction = UIAlertAction(title: "Нет", style: .default, handler: { _ in alert.dismiss(animated: true)})
+
+        alert.addAction(yesAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
 }
 
