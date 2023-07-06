@@ -13,6 +13,15 @@ struct Photo: Codable {
     let thumbImageURL: String
     let largeImageURL: String
     let isLiked: Bool
+    init(_ photoResult: PhotoResult, date: ISO8601DateFormatter) {
+        self.id = photoResult.id
+        self.size = CGSize(width: photoResult.width, height: photoResult.height)
+        self.createdAt = date.date(from: photoResult.createdAt ?? "")
+        self.welcomeDescription = photoResult.description
+        self.thumbImageURL = photoResult.urls.thumb
+        self.largeImageURL = photoResult.urls.full
+        self.isLiked = photoResult.likedByUser
+    }
 }
 
 struct PhotoResult: Decodable {
@@ -23,18 +32,6 @@ struct PhotoResult: Decodable {
     let likedByUser: Bool
     let description: String?
     let urls: UrlsResult
-    
-    func convertToPhoto() -> Photo {
-        return Photo(
-            id: self.id,
-            size: CGSize(width: self.width, height: self.height),
-            createdAt: ISO8601DateFormatter().date(from: self.createdAt ?? ""),
-            welcomeDescription: self.description,
-            thumbImageURL: self.urls.thumb,
-            largeImageURL: self.urls.full,
-            isLiked: self.likedByUser
-        )
-    }
 }
 
 struct UrlsResult: Decodable {
@@ -44,12 +41,4 @@ struct UrlsResult: Decodable {
 
 struct PhotoLike: Decodable {
     let photo: PhotoResult
-}
-
-extension Array {
-    func withReplaced(itemAt index: Int, newValue: Element) -> Array {
-        var newArray = self
-        newArray[index] = newValue
-        return newArray
-    }
 }

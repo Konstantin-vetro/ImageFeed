@@ -15,6 +15,7 @@ final class ImagesListService {
     
     private var lastLoadedPage: Int?
     private var currentTask: URLSessionTask?
+    private let dateFormatter = ISO8601DateFormatter()
     
     init(builder: URLRequestBuilder = .shared) {
         self.builder = builder
@@ -37,17 +38,17 @@ final class ImagesListService {
         let urlSession = URLSession.shared
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<[PhotoResult], Error>) in
             guard let self = self else { return }
-            
             DispatchQueue.main.async {
                 switch result {
                 case .success(let photoResults):
+                    
                     if self.lastLoadedPage == nil {
                         self.lastLoadedPage = 1
                     } else {
                         self.lastLoadedPage! += 1
                     }
                     
-                    let newPhotos = photoResults.map { $0.convertToPhoto() }
+                    let newPhotos = photoResults.map { Photo($0, date: self.dateFormatter) }
                     self.photos.append(contentsOf: newPhotos)
 
                     NotificationCenter.default
@@ -62,25 +63,10 @@ final class ImagesListService {
         self.currentTask = task
         task.resume()
     }
-    
-// MARK: - Request For Page
-    func makeRequest(page: Int) -> URLRequest? {
-        let queryItems = [
-            URLQueryItem(name: "page", value: "\(page)"),
-            URLQueryItem(name: "per_page", value: "10")
-        ]
-        
-        return builder.makeHTTPRequest(
-            path: "/photos",
-            httpMethod: "GET",
-            queryItems: queryItems,
-            baseURL: String(describing: APIKeys.defaultBaseURL)
-        )
-    }
-}
+
 
 // MARK: - Response Change Like
-extension ImagesListService {
+
     func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
         if currentTask != nil {
             currentTask?.cancel()
@@ -95,18 +81,22 @@ extension ImagesListService {
         let task = session.objectTask(for: request) { (result: Result<PhotoLike, Error>) in
             DispatchQueue.main.async {
                 switch result {
-                case .success(_):
+                case .success:
                     if let index = self.photos.firstIndex(where: { $0.id == photoId }) {
                         let photo = self.photos[index]
-                        let newPhoto = Photo(
+                        
+                        let newPhotoResult = PhotoResult(
                             id: photo.id,
-                            size: photo.size,
-                            createdAt: photo.createdAt,
-                            welcomeDescription: photo.welcomeDescription,
-                            thumbImageURL: photo.thumbImageURL,
-                            largeImageURL: photo.largeImageURL,
-                            isLiked: !photo.isLiked
+                            createdAt: photo.createdAt?.description,
+                            width: Int(photo.size.width),
+                            height: Int(photo.size.height),
+                            likedByUser: !photo.isLiked,
+                            description: photo.welcomeDescription,
+                            urls: UrlsResult(full: photo.largeImageURL, thumb: photo.thumbImageURL)
                         )
+                        
+                        let newPhoto = Photo(newPhotoResult, date: self.dateFormatter)
+                        
                         self.photos = self.photos.withReplaced(itemAt: index, newValue: newPhoto)
                         completion(.success(()))
                     }
@@ -120,7 +110,22 @@ extension ImagesListService {
         task.resume()
     }
     
-    func makeLikeRequest(
+// MARK: - Requests
+    private func makeRequest(page: Int) -> URLRequest? {
+        let queryItems = [
+            URLQueryItem(name: "page", value: "\(page)"),
+            URLQueryItem(name: "per_page", value: "10")
+        ]
+        
+        return builder.makeHTTPRequest(
+            path: "/photos",
+            httpMethod: "GET",
+            queryItems: queryItems,
+            baseURL: String(describing: APIKeys.defaultBaseURL)
+        )
+    }
+    
+    private func makeLikeRequest(
         photoId: String,
         isLike: Bool
     ) -> URLRequest? {
@@ -132,3 +137,10 @@ extension ImagesListService {
     }
 }
 
+extension Array {
+    func withReplaced(itemAt index: Int, newValue: Element) -> Array {
+        var newArray = self
+        newArray[index] = newValue
+        return newArray
+    }
+}

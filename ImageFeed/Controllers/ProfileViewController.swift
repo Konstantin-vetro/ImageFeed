@@ -72,7 +72,6 @@ final class ProfileViewController: UIViewController {
                 self.updateAvatar()
             }
         updateAvatar()
-        avatar.layer.cornerRadius = 35
     }
     
     @objc
