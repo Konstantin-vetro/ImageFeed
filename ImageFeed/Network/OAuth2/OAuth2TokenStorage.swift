@@ -14,7 +14,7 @@ final class OAuth2TokenStorage: OAuth2TokenStorageProtocol {
     
     static let shared = OAuth2TokenStorage()
     
-    private init() {}
+    init() {}
     private enum Keys: String {
         case bearerToken
     }
@@ -29,5 +29,9 @@ final class OAuth2TokenStorage: OAuth2TokenStorageProtocol {
           guard let newValue else { return }
           keychainWrapper.set(newValue, forKey: Keys.bearerToken.rawValue)
       }
+    }
+    
+    func clean() {
+        keychainWrapper.removeAllKeys()
     }
 }

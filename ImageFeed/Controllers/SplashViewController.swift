@@ -4,7 +4,6 @@
 //
 
 import UIKit
-import ProgressHUD
 
 final class SplashViewController: UIViewController {
     
@@ -71,6 +70,7 @@ final class SplashViewController: UIViewController {
         let tabBarController = UIStoryboard(name: "Main", bundle: .main)
             .instantiateViewController(withIdentifier: "TabBarViewController")
         window.rootViewController = tabBarController
+        window.makeKeyAndVisible()
     }
 }
 
@@ -85,15 +85,15 @@ extension SplashViewController: AuthViewControllerDelegate {
     }
     
     private func fetchOAuthToken(_ code: String) {
+        UIBlockingProgressHUD.show()
         oauth2Service.fetchOAuthToken(code) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let token):
                 self.fetchProfile(token: token)
             case .failure:
-                UIBlockingProgressHUD.dismiss()
                 self.showError()
-                break
+                UIBlockingProgressHUD.dismiss()
             }
         }
     }
@@ -109,7 +109,6 @@ extension SplashViewController: AuthViewControllerDelegate {
                 self.switchToTabBarController()
             case .failure:
                 self.showError()
-                break
             }
             UIBlockingProgressHUD.dismiss()
         }

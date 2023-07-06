@@ -6,11 +6,10 @@
 import UIKit
 
 final class SingleImageViewController: UIViewController {
-    var image: UIImage! {
+    var image: URL? {
         didSet {
             guard isViewLoaded else { return }
-            imageView.image = image
-            rescaleAndCenterImageInScrollView(image: image)
+            loadAndShowImage(url: image)
         }
     }
     
@@ -20,14 +19,30 @@ final class SingleImageViewController: UIViewController {
 // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = image
-        rescaleAndCenterImageInScrollView(image: image)
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 1.25
+        loadAndShowImage(url: image)
     }
     
     @IBAction private func didTapBackButton() {
         dismiss(animated: true, completion: nil)
+    }
+    
+// MARK: - Load and Show Image
+    private func loadAndShowImage(url: URL?) {
+        guard let url = url else { return }
+        UIBlockingProgressHUD.show()
+        imageView.kf.setImage(with: url) { [weak self] result in
+            UIBlockingProgressHUD.dismiss()
+            
+            guard let self = self else { return }
+            switch result {
+            case .success(let imageResult):
+                self.rescaleAndCenterImageInScrollView(image: imageResult.image)
+            case .failure:
+                self.showAlert(url: url)
+            }
+        }
     }
     
 // MARK: - Shared
@@ -67,5 +82,24 @@ final class SingleImageViewController: UIViewController {
 extension SingleImageViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         imageView
+    }
+}
+
+extension SingleImageViewController {
+    private func showAlert(url: URL) {
+        let alert = UIAlertController(title: "Что-то пошло не так(", message: "Попробовать еще раз?", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Повторить", style: .default) { _ in
+            alert.dismiss(animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "Не надо", style: .cancel) { [weak self] _ in
+            guard let self = self else { return }
+            self.loadAndShowImage(url: url)
+        }
+        
+        alert.addAction(action)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
     }
 }
