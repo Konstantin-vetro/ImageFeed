@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		062577102A587629006E6450 /* WebViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0625770F2A587628006E6450 /* WebViewPresenter.swift */; };
+		062577122A588DE2006E6450 /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062577112A588DE2006E6450 /* AuthHelper.swift */; };
 		06419A1729FADE9F0080FC82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06419A1629FADE9F0080FC82 /* AppDelegate.swift */; };
 		06419A1929FADE9F0080FC82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06419A1829FADE9F0080FC82 /* SceneDelegate.swift */; };
 		06419A1B29FADE9F0080FC82 /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06419A1A29FADE9F0080FC82 /* ImagesListViewController.swift */; };
@@ -53,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0625770F2A587628006E6450 /* WebViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenter.swift; sourceTree = "<group>"; };
+		062577112A588DE2006E6450 /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
 		06419A1329FADE9F0080FC82 /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06419A1629FADE9F0080FC82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06419A1829FADE9F0080FC82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 				0642A9402A0EF99D00D39FD4 /* UIColor+Extensions.swift */,
 				06ACD0422A25527700F33895 /* URLSession+Extensions.swift */,
 				06ACD0442A2552AB00F33895 /* URLRequest+Extensions.swift */,
+				062577112A588DE2006E6450 /* AuthHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 				06ACD0402A25494D00F33895 /* OAuth2 */,
 				06ACD0372A22A12500F33895 /* AuthControllers+API */,
 				06C0A42B2A3663DA004D3E92 /* UIBlockingProgressHUD.swift */,
+				0625770F2A587628006E6450 /* WebViewPresenter.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -356,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				062577102A587629006E6450 /* WebViewPresenter.swift in Sources */,
 				0689F3FE2A4B481700ED5C27 /* ImagesListService.swift in Sources */,
 				0689F3FC2A4B47EE00ED5C27 /* Photo.swift in Sources */,
 				06ACD03F2A25487400F33895 /* OAuth2TokenStorage.swift in Sources */,
@@ -363,6 +370,7 @@
 				06ACD0392A22A24700F33895 /* WebViewViewController.swift in Sources */,
 				06C0A4302A366E9A004D3E92 /* ProfileResult.swift in Sources */,
 				06ACD0342A22853F00F33895 /* Constants.swift in Sources */,
+				062577122A588DE2006E6450 /* AuthHelper.swift in Sources */,
 				06C0A4412A3B8E11004D3E92 /* TabBarController.swift in Sources */,
 				06ACD03D2A252DF200F33895 /* OAuth2Service.swift in Sources */,
 				06419A1B29FADE9F0080FC82 /* ImagesListViewController.swift in Sources */,
