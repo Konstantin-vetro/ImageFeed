@@ -10,7 +10,7 @@ protocol AuthHelperProtocol {
     func code(from url: URL) -> String?
 }
 
-class authHelper: AuthHelperProtocol {
+class AuthHelper: AuthHelperProtocol {
     
     let configuration: AuthConfiguration
     
