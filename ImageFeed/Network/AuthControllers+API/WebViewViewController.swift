@@ -3,7 +3,6 @@
 //  ImageFeed
 //
 
-import UIKit
 import WebKit
 
 public protocol WebViewViewControllerProtocol: AnyObject {

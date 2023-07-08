@@ -6,8 +6,15 @@
 import UIKit
 import Kingfisher
 
-final class ProfileViewController: UIViewController {
-    private let profileService = ProfileService.shared
+public protocol ProfileViewControllerProtocol: AnyObject {
+    var presenter: ProfileViewPresentProtocol? { get set }
+    func setupProfileDetails(name: String, login: String, bio: String)
+    func setupAvatar(url: URL)
+}
+
+final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
+    var presenter: ProfileViewPresentProtocol?
+    
     private var profileImageServiceObserver: NSObjectProtocol?
     private let avatarPlaceHolder = UIImage(named: "placeholder.png")
 
@@ -60,18 +67,20 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ypBlack
+        let presenter = ProfileViewPresenter()
+        presenter.view = self
+        self.presenter = presenter
+        presenter.updateProfileDetails()
+
         setupUI()
-        updateProfileDetails(profile: profileService.profile)
-        
         profileImageServiceObserver = NotificationCenter.default
             .addObserver(forName: ProfileImageService.didChangeNotification,
                          object: nil,
                          queue: .main
             ) { [weak self] _ in
                 guard let self else { return }
-                self.updateAvatar()
+                self.presenter?.updateAvatar()
             }
-        updateAvatar()
     }
     
     @objc
@@ -79,12 +88,7 @@ final class ProfileViewController: UIViewController {
         let alert = UIAlertController(title: "Пока Пока!", message: "Уверены что хотите выйти?", preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "Да", style: .default, handler: { _ in
-            OAuth2TokenStorage.shared.clean()
-            WebViewViewController.clean()
-            guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
-
-            window.rootViewController = SplashViewController()
-            window.makeKeyAndVisible()
+            self.presenter?.logout()
         })
         
         let cancelAction = UIAlertAction(title: "Нет", style: .default, handler: { _ in alert.dismiss(animated: true)})
@@ -93,11 +97,36 @@ final class ProfileViewController: UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true)
     }
+    
+// MARK: - Setup Avatar
+    func setupAvatar(url: URL) {
+        let cache = ImageCache.default
+        cache.clearMemoryCache()
+        cache.clearDiskCache()
+        
+        avatar.kf.indicatorType = IndicatorType.activity
+        avatar.kf.setImage(with: url, placeholder: avatarPlaceHolder) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let image):
+                self.avatar.image = image.image
+            case .failure:
+                self.avatar.image = self.avatarPlaceHolder
+            }
+        }
+    }
+    
+// MARK: - Setup Profile
+    func setupProfileDetails(name: String, login: String, bio: String) {
+        nameLabel.text = name
+        loginNameLabel.text = login
+        descriptionLabel.text = bio
+    }
 }
 
 // MARK: - Layouts
 private extension ProfileViewController {
-    private func setupUI() {
+    func setupUI() {
         [avatar, nameLabel, loginNameLabel, descriptionLabel, logoutButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
@@ -126,40 +155,6 @@ private extension ProfileViewController {
             logoutButton.centerYAnchor.constraint(equalTo: avatar.centerYAnchor),
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
         ])
-    }
-}
-
-// MARK: - Update Avatar
-extension ProfileViewController {
-    private func updateAvatar() {
-        guard
-            let profileImageURL = ProfileImageService.shared.avatarURL,
-            let url = URL(string: profileImageURL)
-        else { return }
-        let cache = ImageCache.default
-        cache.clearMemoryCache()
-        cache.clearDiskCache()
-        
-        avatar.kf.indicatorType = IndicatorType.activity
-        avatar.kf.setImage(with: url, placeholder: avatarPlaceHolder) { [weak self] result in
-            guard let self else { return }
-            switch result {
-            case .success(let image):
-                self.avatar.image = image.image
-            case .failure:
-                self.avatar.image = self.avatarPlaceHolder
-            }
-        }
-    }
-}
-
-// MARK: - Setup Profile
-private extension ProfileViewController {
-    func updateProfileDetails(profile: Profile?) {
-        guard let profile = profile else { return }
-        nameLabel.text = profile.name
-        loginNameLabel.text = profile.loginName
-        descriptionLabel.text = profile.bio
     }
 }
 
