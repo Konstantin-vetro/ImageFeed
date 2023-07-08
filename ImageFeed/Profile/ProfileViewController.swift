@@ -7,13 +7,15 @@ import UIKit
 import Kingfisher
 
 public protocol ProfileViewControllerProtocol: AnyObject {
-    var presenter: ProfileViewPresentProtocol? { get set }
+    var presenter: ProfileViewPresenterProtocol? { get set }
     func setupProfileDetails(name: String, login: String, bio: String)
     func setupAvatar(url: URL)
 }
 
 final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
-    var presenter: ProfileViewPresentProtocol?
+    var presenter: ProfileViewPresenterProtocol? = {
+       return ProfileViewPresenter()
+    }()
     
     private var profileImageServiceObserver: NSObjectProtocol?
     private let avatarPlaceHolder = UIImage(named: "placeholder.png")
@@ -67,10 +69,8 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ypBlack
-        let presenter = ProfileViewPresenter()
-        presenter.view = self
-        self.presenter = presenter
-        presenter.updateProfileDetails()
+        presenter?.view = self
+        presenter?.updateProfileDetails()
 
         setupUI()
         profileImageServiceObserver = NotificationCenter.default

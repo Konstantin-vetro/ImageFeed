@@ -10,6 +10,7 @@
 		062577102A587629006E6450 /* WebViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0625770F2A587628006E6450 /* WebViewPresenter.swift */; };
 		062577122A588DE2006E6450 /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062577112A588DE2006E6450 /* AuthHelper.swift */; };
 		062577262A58AE6D006E6450 /* ProfileViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062577252A58AE6D006E6450 /* ProfileViewPresenter.swift */; };
+		062577282A59E390006E6450 /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062577272A59E390006E6450 /* ProfileTests.swift */; };
 		06419A1729FADE9F0080FC82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06419A1629FADE9F0080FC82 /* AppDelegate.swift */; };
 		06419A1929FADE9F0080FC82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06419A1829FADE9F0080FC82 /* SceneDelegate.swift */; };
 		06419A1B29FADE9F0080FC82 /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06419A1A29FADE9F0080FC82 /* ImagesListViewController.swift */; };
@@ -59,6 +60,7 @@
 		0625770F2A587628006E6450 /* WebViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenter.swift; sourceTree = "<group>"; };
 		062577112A588DE2006E6450 /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
 		062577252A58AE6D006E6450 /* ProfileViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewPresenter.swift; sourceTree = "<group>"; };
+		062577272A59E390006E6450 /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		06419A1329FADE9F0080FC82 /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06419A1629FADE9F0080FC82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06419A1829FADE9F0080FC82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				0689F4052A4C8DC100ED5C27 /* WebViewTests.swift */,
+				062577272A59E390006E6450 /* ProfileTests.swift */,
 			);
 			path = ImageFeedTests;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0689F4062A4C8DC100ED5C27 /* WebViewTests.swift in Sources */,
+				062577282A59E390006E6450 /* ProfileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,19 +5,18 @@
 
 import UIKit
 
-public protocol ProfileViewPresentProtocol {
+public protocol ProfileViewPresenterProtocol {
     var view: ProfileViewControllerProtocol? { get set }
     func updateProfileDetails()
     func updateAvatar()
     func logout()
 }
 
-final class ProfileViewPresenter: ProfileViewPresentProtocol {
+final class ProfileViewPresenter: ProfileViewPresenterProtocol {
     weak var view: ProfileViewControllerProtocol?
     
     private let profileService: ProfileServiceProtocol
     private let profileImageService: ProfileImageServiceProtocol
-    
         
     init(
         profileService: ProfileServiceProtocol = ProfileService.shared,
@@ -49,9 +48,11 @@ final class ProfileViewPresenter: ProfileViewPresentProtocol {
     func logout() {
         OAuth2TokenStorage.shared.clean()
         WebViewViewController.clean()
-        guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
-
-        window.rootViewController = SplashViewController()
-        window.makeKeyAndVisible()
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            let window = windowScene.windows.first
+            
+            window?.rootViewController = SplashViewController()
+            window?.makeKeyAndVisible()
+        }
     }
 }
