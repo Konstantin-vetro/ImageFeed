@@ -22,9 +22,11 @@
 		0642A9392A0D7BB200D39FD4 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0642A9382A0D7BB200D39FD4 /* SingleImageViewController.swift */; };
 		0642A93E2A0E8E0600D39FD4 /* ImagesListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0642A93D2A0E8E0600D39FD4 /* ImagesListCell.xib */; };
 		0642A9412A0EF99D00D39FD4 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0642A9402A0EF99D00D39FD4 /* UIColor+Extensions.swift */; };
+		0673A9152A5A03640065A75B /* ImagesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0673A9142A5A03630065A75B /* ImagesListPresenter.swift */; };
 		0689F3FC2A4B47EE00ED5C27 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689F3FB2A4B47EE00ED5C27 /* Photo.swift */; };
 		0689F3FE2A4B481700ED5C27 /* ImagesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689F3FD2A4B481700ED5C27 /* ImagesListService.swift */; };
 		0689F4062A4C8DC100ED5C27 /* WebViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689F4052A4C8DC100ED5C27 /* WebViewTests.swift */; };
+		0693ACD72A5B57EF006BFF72 /* ImagesListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0693ACD62A5B57EF006BFF72 /* ImagesListTests.swift */; };
 		06ACD0342A22853F00F33895 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ACD0332A22853F00F33895 /* Constants.swift */; };
 		06ACD0362A22A04600F33895 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ACD0352A22A04600F33895 /* AuthViewController.swift */; };
 		06ACD0392A22A24700F33895 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ACD0382A22A24700F33895 /* WebViewViewController.swift */; };
@@ -74,10 +76,12 @@
 		0642A9382A0D7BB200D39FD4 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		0642A93D2A0E8E0600D39FD4 /* ImagesListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagesListCell.xib; sourceTree = "<group>"; };
 		0642A9402A0EF99D00D39FD4 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		0673A9142A5A03630065A75B /* ImagesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListPresenter.swift; sourceTree = "<group>"; };
 		0689F3FB2A4B47EE00ED5C27 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		0689F3FD2A4B481700ED5C27 /* ImagesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListService.swift; sourceTree = "<group>"; };
 		0689F4032A4C8DC000ED5C27 /* ImageFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0689F4052A4C8DC100ED5C27 /* WebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewTests.swift; sourceTree = "<group>"; };
+		0693ACD62A5B57EF006BFF72 /* ImagesListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListTests.swift; sourceTree = "<group>"; };
 		06ACD0332A22853F00F33895 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		06ACD0352A22A04600F33895 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		06ACD0382A22A24700F33895 /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 				06419A1A29FADE9F0080FC82 /* ImagesListViewController.swift */,
 				0642A90829FC653900D39FD4 /* ImagesListCell.swift */,
 				0642A93D2A0E8E0600D39FD4 /* ImagesListCell.xib */,
+				0673A9142A5A03630065A75B /* ImagesListPresenter.swift */,
 			);
 			path = ImageList;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 			children = (
 				0689F4052A4C8DC100ED5C27 /* WebViewTests.swift */,
 				062577272A59E390006E6450 /* ProfileTests.swift */,
+				0693ACD62A5B57EF006BFF72 /* ImagesListTests.swift */,
 			);
 			path = ImageFeedTests;
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 				0642A9362A0D533300D39FD4 /* ProfileViewController.swift in Sources */,
 				062577262A58AE6D006E6450 /* ProfileViewPresenter.swift in Sources */,
 				06419A1729FADE9F0080FC82 /* AppDelegate.swift in Sources */,
+				0673A9152A5A03640065A75B /* ImagesListPresenter.swift in Sources */,
 				06ACD0482A26616F00F33895 /* SplashViewController.swift in Sources */,
 				06C0A42E2A366CF9004D3E92 /* ProfileService.swift in Sources */,
 				0642A9412A0EF99D00D39FD4 /* UIColor+Extensions.swift in Sources */,
@@ -419,6 +426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0693ACD72A5B57EF006BFF72 /* ImagesListTests.swift in Sources */,
 				0689F4062A4C8DC100ED5C27 /* WebViewTests.swift in Sources */,
 				062577282A59E390006E6450 /* ProfileTests.swift in Sources */,
 			);
@@ -585,7 +593,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -619,7 +627,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

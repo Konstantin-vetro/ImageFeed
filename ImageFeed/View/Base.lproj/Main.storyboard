@@ -53,8 +53,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7pe-Yr-A60">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="6aw-HL-sJX">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="132"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="6aw-HL-sJX">
+                                        <rect key="frame" x="0.0" y="0.0" width="83" height="75"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -238,7 +238,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="0" width="200" height="132"/>
+        <image name="ImagePlaceholder" width="83" height="75"/>
         <image name="Logo Auth" width="60" height="60"/>
         <image name="Share icon" width="50" height="50"/>
         <image name="backButtonBlack" width="24" height="24"/>
