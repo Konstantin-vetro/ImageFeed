@@ -4,7 +4,12 @@
 
 import UIKit
 
-final class ProfileImageService {
+protocol ProfileImageServiceProtocol {
+    var avatarURL: String? { get }
+    func fetchProfileImageURL(_ username: String, completion: @escaping (Result<String, Error>) -> Void)
+}
+
+final class ProfileImageService: ProfileImageServiceProtocol {
     static let shared = ProfileImageService()
     private let builder: URLRequestBuilder
     static let didChangeNotification = Notification.Name("ProfileImageProviderDidChange")

@@ -53,8 +53,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7pe-Yr-A60">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="6aw-HL-sJX">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="132"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="6aw-HL-sJX">
+                                        <rect key="frame" x="0.0" y="0.0" width="83" height="75"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -71,6 +71,7 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t92-bO-FZq">
                                 <rect key="frame" x="8" y="56" width="48" height="48"/>
+                                <accessibility key="accessibilityConfiguration" identifier="NavBackButtonWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="Gvp-qt-fGS"/>
                                     <constraint firstAttribute="height" constant="48" id="jeZ-am-Xjg"/>
@@ -144,6 +145,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zpw-pC-Wmz">
                                 <rect key="frame" x="16" y="682" width="382" height="48"/>
                                 <color key="backgroundColor" name="YP White"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Authenticate"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="NQZ-GR-Qam"/>
                                 </constraints>
@@ -183,7 +185,7 @@
         <!--Web View View Controller-->
         <scene sceneID="HgS-A0-tYw">
             <objects>
-                <viewController id="B5V-mg-qzJ" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewViewController" id="B5V-mg-qzJ" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QX0-fZ-XKR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -238,7 +240,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="0" width="200" height="132"/>
+        <image name="ImagePlaceholder" width="83" height="75"/>
         <image name="Logo Auth" width="60" height="60"/>
         <image name="Share icon" width="50" height="50"/>
         <image name="backButtonBlack" width="24" height="24"/>

@@ -15,4 +15,32 @@ enum APIKeys {
     static let defaultBaseURL: URL = URL(string: "https://api.unsplash.com")!
 }
 
+struct AuthConfiguration {
+    let accessKey: String
+    let secretKey: String
+    let redirectURI: String
+    let accessScope: String
+    let defaultBaseURL: String
+    let authURLString: String
+    
+    init(accessKey: String, secretKey: String, redirectURI: String, accessScope: String, defaultBaseURL: String, authURLString: String) {
+        self.accessKey = accessKey
+        self.secretKey = secretKey
+        self.redirectURI = redirectURI
+        self.accessScope = accessScope
+        self.defaultBaseURL = defaultBaseURL
+        self.authURLString = authURLString
+    }
+    
+    static var standard: AuthConfiguration {
+        return AuthConfiguration(
+            accessKey: APIKeys.AccessKey,
+            secretKey: APIKeys.SecretKey,
+            redirectURI: APIKeys.RedirectURI,
+            accessScope: APIKeys.AccessScope,
+            defaultBaseURL: APIKeys.defaultBaseURL.absoluteString,
+            authURLString: APIKeys.UnsplashAuthorizeURLString
+        )
+    }
+}
 
