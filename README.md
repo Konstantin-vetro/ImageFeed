@@ -1,5 +1,9 @@
 # Image Feed
 
+![3  Unsplash web (базовая версия)](https://github.com/Konstantin-vetro/ImageFeed/assets/124914005/78a6657c-0880-4f31-b8fa-4bae97808e29)
+![7  Лайк (базовая версия)](https://github.com/Konstantin-vetro/ImageFeed/assets/124914005/160205b7-5ad1-4217-9934-15069c7b7aa4)
+![18  Профиль  Нет избранных фото (базовая версия)](https://github.com/Konstantin-vetro/ImageFeed/assets/124914005/c90ccee6-28ee-4ca2-a490-6736e583d235)
+
 # Ссылки
 
 - [Дизайн в Figma](https://tinyurl.com/image-feed-figma)
